@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage{textgreek}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Assignment 4}
+\author{Owen Bean}
+
+\begin{document}
+\maketitle
+
+
+\section{Links}
+
+Github: \href{https://github.com/owenbean400/NLPAssignment3}{https://github.com/owenbean400/NLPAssignment3}
+
+\section{Step 1}
+
+For P@1 value on stack exchange duplicate question with model "distilbert-base-nli-stsb-quora-ranking", I got 0.011. Looking at the data, I noticed the duplicate questions were the question itself, so I tried P@1 value, excluding same question ID guessed. That value was 0.156. This is concluding that the model is duplicating the same ID question, however, ignoring this factor has showed 15\% of the questions retrieved is correct duplicate question. The Mean reciprocal rank from 100 queries is 0.095. This shows the model is averaging the tenth question is correct duplicate.
+
+\section{Step 2}
+
+I've done fine-tuning to "distilbert-base-nli-stsb-quora-ranking" by the losses with 90\% of the data labeled as duplicate with another data label as not duplicate to train the new loss value on model. The results from 10\% testing data has P@1 value at 0.0118. I've tried the ignoring same question ID for P@1, which is 0.1417. The MRR value is 0.0931.
+
+\section{Step 3}
+
+I've used the same testing data for fine-tuning onto the pre-trained model. The P@1 scores were the same. The MRR score difference was 0.000658. The t-value is 7.2402. Looking at the T-table, 7.2402 is way off the table, making \(\alpha\) less than 0.0005. Therefore, there is no significant change from fine-tuning and pre-trained.
+
+\end{document}
